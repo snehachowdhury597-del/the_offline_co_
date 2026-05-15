@@ -4,14 +4,18 @@ import os
 from typing import Any
 
 import uvicorn
-from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from supabase import Client, create_client
 
 from models import GroupInfo, MatchResponse, Plan, ResultResponse, SubmitRequest, SubmitResponse
 
-load_dotenv()
+# Load environment variables from .env file if python-dotenv is available
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 app = FastAPI(title="TheOfflineCo Reconnection API", version="0.4.0")
 
